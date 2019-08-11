@@ -22,7 +22,7 @@ int		alloc_rooms(t_data *data)
 	return (1);
 }
 
-int		**alloc_matrix_int(int	x, int y)
+int		**alloc_matrix_int(int	x, int y, int val)
 {
 	int		i;
 	int		j;
@@ -37,7 +37,7 @@ int		**alloc_matrix_int(int	x, int y)
 		if (!(mx[i] = (int*)malloc(sizeof(int) * x)))
 			return (NULL);
 		while (j < x)
-			mx[i][j++] = 0;
+			mx[i][j++] = val;
 		i++;
 	}
 	return (mx);

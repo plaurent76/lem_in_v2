@@ -59,7 +59,7 @@ int		filling(t_data *data, int line_nb, int room_nb);
 int		get_data(t_data *data, char *input);
 int		get_type(char *line);
 int		alloc_rooms(t_data *data);
-int		**alloc_matrix_int(int x, int y);
+int		**alloc_matrix_int(int x, int y, int val);
 char	*get_input(int fd);
 int		get_room(t_data *data);
 void	print_input(char **input);
