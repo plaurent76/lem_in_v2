@@ -99,11 +99,7 @@ static char	*st_right_align(t_asset asset, char *str, int i, int j)
 char		*ft_width_f(t_asset asset, char *str, int i, int j)
 {
 	char	*str2;
-	int		k;
-	int		n;
 
-	n = 0;
-	k = -1;
 	if (i < j)
 		i = j;
 	if (ft_strchr(asset.flags, '-') || i == j)

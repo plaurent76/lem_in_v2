@@ -26,7 +26,7 @@ int	 ffy(int **mx, int size_y)
 	return 0;
 }
 
-int	 ffy(int **mx, int y, int size_x)
+int	 ffx(int **mx, int y, int size_x)
 {
 	int i = -1;
 
@@ -48,13 +48,16 @@ int		duplicate_path(int **mx, int size_x, int size_y, int y_src)
 	return y;
 }
 
-void	add_to_path(int **mx, int y, int id)
+
+int		room_in_path(int **mx, int y, int id)
 {
-	if (!room_in_path(mx, y, id)) {
-		mx[y][ffx(y)] = id;
-		return ;
-	}
-	del_path(mx, y);
+	int 	i;
+
+	i = -1;
+	while (mx[y][++i] != -1 && mx[y][++i] != 1)
+		if (mx[y][i] == id)
+			return (1);
+	return (0);
 }
 
 void	del_path(int **mx, int y)
@@ -68,47 +71,61 @@ void	del_path(int **mx, int y)
 	}
 }
 
-bool	room_in_path(int **mx, int y, int id)
+void	add_to_path(int **mx, int size_y, int y, int id)
 {
-	int 	i;
+	if (!room_in_path(mx, y, id))
+	{
+		mx[y][ffx(mx, y, size_y)] = id;
+		return ;
+	}
+	del_path(mx, y);
+}
 
-	i = -1;
-	while (mx[y][++i] != -1 && mx[y][++i] != 1)
-		if (mx[y][i] == id)
-			return true;
-	return false;
+
+void 	explore_paths(int **links, int **mx, int size_y, int path_n, int id)
+{
+	int 	x;
+	int 	n_link;
+	int 	path_n_duplicate;
+
+	x = -1;
+	n_link = 0;
+	if (!path_n && mx[0][0] == -1)
+	{
+		path_n = ffy(mx, size_y);
+		add_to_path(mx, size_y, path_n, id);
+	}
+	path_n_duplicate = path_n;
+	while (++x < size_y)
+	{
+		if (links[id][x]) // link exists with start
+		{
+			n_link++;
+			if (n_link > 1)
+			{
+				path_n_duplicate = duplicate_path(mx, size_y, size_y, path_n);
+			}
+			add_to_path(mx, size_y, path_n_duplicate, x);
+			explore_paths(links, mx, size_y, path_n_duplicate, x);
+		}
+	}
+	if (n_link == 0)
+	{
+		del_path(mx, path_n);
+	}
 }
 
 void	path_finder(t_data *data)
 {
 	int 	**mx;
-
-	int 	y;
-	int 	n;
 	int 	**links;
+	int 	n;
 
 	if (!(mx = alloc_matrix_int(data->nb_rooms, data->nb_rooms, -1)))
 		return ;
 	links = data->matrix;
 	n = (int)data->nb_rooms;
 	ft_free_matrix(&mx);
-	expore_paths(links, mx, NULL, 0);
-}
-
-void 	explore_paths(int **links, int **mx, int from, int id)
-{
-	y = -1;
-
-	if (!from)
-	{
-		from = ffy(mx);
-	}
-	while (++y < n)
-	{
-		if (links[y][id]) // link exists with start
-		{
-			mx
-		}
-	}
-
+	explore_paths(links, mx, n, 0, 0);
+	print_matrix(data, mx);
 }

@@ -36,6 +36,7 @@ int			main(int ac, char **av)
 	count_flow_max(&data);
 	print_matrix(&data, data.matrix);
 	ft_printf("-------------EK------------\n");
+	path_finder(&data);
 	//path = ek(&data);
 	//ft_printf("CHOICE PATH : \n");
 	//choice_path(&data, path);// A REFAIRE AVEC LES NOUVELLES DONNEES

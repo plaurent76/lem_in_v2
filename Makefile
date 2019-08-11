@@ -24,7 +24,7 @@ MAGENTA = "\033[0;35;1m"
 RESET = "\033[0m"
 
 SRC = 	lem_in.c utils.c get_input.c get_data.c filling.c delete.c alloc.c bfs.c \
-		ek.c newpath.c choice_path.c
+		ek.c newpath.c choice_path.c new_bfs.c
 
 HEADER = includes/
 
