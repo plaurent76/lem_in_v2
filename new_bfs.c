@@ -244,7 +244,7 @@ void	path_finder(t_data *data)
 	links = data->matrix;
 	print_tab(links, data->nb_rooms, data->nb_rooms);
 	ft_printf("apres print\n");
-	data->nb_valid = -1;
+	data->nb_valid = 0;
 	explore_paths(data, links, mx, 0, 0);
 	ft_printf("apres explore\n");
 	if (!load_valid_paths(data, mx))
