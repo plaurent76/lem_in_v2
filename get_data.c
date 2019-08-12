@@ -189,7 +189,7 @@ int		get_data(t_data *data, char *input)
 	//ft_strdel(&input);
 	if (!count_nb_rooms(data))
 		return (0);
-	if (!alloc_rooms(data) || (!alloc_matrix_int(data->nb_rooms, data->nb_rooms, 0)))
+	if (!alloc_rooms(data) || (!(data->matrix = alloc_matrix(data->nb_rooms, data->nb_rooms, 0))))
 		return (0);
 	while (data->input[line_nb])
 	{

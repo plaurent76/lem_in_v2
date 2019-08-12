@@ -57,7 +57,7 @@ static void	st_dispatch(t_asset asset, size_t n, va_list ap)
 int			ft_pre_dispatch(char **tab, va_list ap)
 {
 	t_asset	asset;
-	int		n;
+	size_t	n;
 	int		i;
 
 	i = -1;

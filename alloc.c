@@ -22,23 +22,23 @@ int		alloc_rooms(t_data *data)
 	return (1);
 }
 
-int		**alloc_matrix_int(int	x, int y, int val)
+int		**alloc_matrix(int x, int y, int id)
 {
 	int		i;
 	int		j;
-	int		**mx;
-
+	int		**matrix;
+	
 	i = 0;
-	if (!(mx = (int**)malloc(sizeof(int*) * y)))
+	if (!(matrix = (int**)malloc(sizeof(int*) * y)))
 		return (NULL);
 	while (i < y)
 	{
 		j = 0;
-		if (!(mx[i] = (int*)malloc(sizeof(int) * x)))
+		if (!(matrix[i] = (int*)malloc(sizeof(int) * x)))
 			return (NULL);
 		while (j < x)
-			mx[i][j++] = val;
+			matrix[i][j++] = id;
 		i++;
 	}
-	return (mx);
+	return (matrix);
 }

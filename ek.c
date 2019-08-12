@@ -195,11 +195,8 @@ int     *check_blocking(t_data *data, int *first_path)
         i = 0;
         while (i < (int)data->nb_rooms && data->block[i] <= 0) //on cherche un blocage et si il n'y en a pas on sort de check blocking
             i++;
-        //print_matrix(data, data->matrix);
-        ft_putstr("check du blockage :");
-        ft_putnbr(i);
         if (i == (int)data->nb_rooms) // EV : useless ?
-            break ;
+            return (first_path);
         open_upstream(data, tmp_matrix, i);
         if (!(new_path = bfs(data, tmp_matrix))) //teste en ayant debloquer
             return (NULL);
@@ -211,12 +208,11 @@ int     *check_blocking(t_data *data, int *first_path)
         if ((new_path[1] != -1 && is_shorter(first_path, new_path)) || (first_path[1] == -1 && new_path[1] != -1)) // soit le nouveau chemin est plus rapide
         {
             open_downstream(data, tmp_matrix, i);
-            //data->matrix = tmp_matrix;
+            data->matrix = tmp_matrix;
             first_path = new_path;
         }
         data->block[i] = -1; //supprime blocage et le met en "deja check" d'ou le -1
     }
-    data->matrix = tmp_matrix;
     return (first_path); // EV : et pas return (new_path); ???
 }
 
@@ -243,7 +239,7 @@ int     blocking(t_data *data, int *first_path, t_path *all_paths, int flow)
         //    return (all_path);
     }
     else
-        ft_printf("CHECK BLOCKING N'A TROUVE AUCUNE SOLUTION !!!\n");//TEST
+        printf("CHECK BLOCKING N'A TROUVE AUCUNE SOLUTION !!!\n");//TEST
     return (0);
 }
 

@@ -42,11 +42,11 @@ typedef struct	s_path
 
 typedef struct	s_data
 {
+	int		*score;
 	int		nb_ants;
+	int		*block;
 	int		flow_max;
-	int		flow_min;
 	char	**input;
-	int 	*block;
 	int		*line_type;
 	int		**matrix;
 	t_room	*rooms;
@@ -63,7 +63,7 @@ int		filling(t_data *data, int line_nb, int room_nb);
 int		get_data(t_data *data, char *input);
 int		get_type(char *line);
 int		alloc_rooms(t_data *data);
-int		**alloc_matrix_int(int x, int y, int val);
+int		**alloc_matrix(int x, int y, int id);
 char	*get_input(int fd);
 int		get_room(t_data *data);
 void	print_input(char **input);

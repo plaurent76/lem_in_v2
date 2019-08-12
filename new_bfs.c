@@ -42,10 +42,15 @@ int	 ffx(int **mx, int y, int size_x)
 int		duplicate_path(int **mx, int size_x, int size_y, int y_src)
 {
 	int 	y;
+	int		i;
 
 	y = ffy(mx, size_y);
 	ft_memcpy(mx[y], mx[y_src], (size_x) * sizeof(int));
-	return y;
+	i = 0;
+	while (mx[y][i] != -1)
+		i++;
+	mx[y][i - 1] = -1;
+	return (y);
 }
 
 
@@ -84,9 +89,9 @@ void	add_to_path(int **mx, int size_y, int y, int id)
 
 void 	explore_paths(int **links, int **mx, int size_y, int path_n, int id)
 {
-	int 	x;
 	int 	n_link;
 	int 	path_n_duplicate;
+	int		x;
 
 	x = -1;
 	n_link = 0;
@@ -106,7 +111,7 @@ void 	explore_paths(int **links, int **mx, int size_y, int path_n, int id)
 				path_n_duplicate = duplicate_path(mx, size_y, size_y, path_n);
 			}
 			add_to_path(mx, size_y, path_n_duplicate, x);
-			explore_paths(links, mx, size_y, path_n_duplicate, x);
+			//explore_paths(links, mx, size_y, path_n_duplicate, id);
 		}
 	}
 	if (n_link == 0)
@@ -121,11 +126,13 @@ void	path_finder(t_data *data)
 	int 	**links;
 	int 	n;
 
-	if (!(mx = alloc_matrix_int(data->nb_rooms, data->nb_rooms, -1)))
+	if (!(mx = alloc_matrix(data->nb_rooms, data->nb_rooms, -1)))
 		return ;
 	links = data->matrix;
 	n = (int)data->nb_rooms;
-	ft_free_matrix(&mx);
+	print_matrix(data, links);
 	explore_paths(links, mx, n, 0, 0);
+	ft_putstr("teste8");
 	print_matrix(data, mx);
+		ft_free_matrix(&mx);
 }
