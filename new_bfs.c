@@ -126,12 +126,15 @@ void	add_to_path(int **mx, int size_y, int y, int id)
 void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n, int id)
 {
 	int 	n_link;
+	int 	n_valid;
 	int 	path_n_duplicate;
 	int		path_n_length;
 	int		x;
 
 	x = -1;
 	n_link = 0;
+	n_valid = 0;
+
 	if (!path_n && mx[0][0] == -1)
 	{
 		path_n = ffy(mx, size_y);
@@ -157,6 +160,8 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 			ft_printf("explore path %d from room %d\n", path_n, x);
 			if (x != 1)
 				explore_paths(data, links, mx, size_y, path_n_duplicate, x);
+			else
+				n_valid++;
 		}
 	}
 	if (n_link == 0)
@@ -164,6 +169,7 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 		// del_path(mx, path_n);
 		ft_printf("path %d deleted cause no link\n", path_n);
 	}
+	ft_printf("found %d valid paths\n", n_valid);
 }
 
 void	path_finder(t_data *data)
