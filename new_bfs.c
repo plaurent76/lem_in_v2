@@ -213,14 +213,14 @@ int 	load_valid_paths(t_data *data, int **mx)
 	i = -1;
 	valid_saved = 0;
 
-	while (++i < data->nb_rooms && valid_saved < data->n_valid)
+	while (++i < (int)data->nb_rooms && valid_saved < data->n_valid)
 	{
 		j = -1;
-		while (++j < data->nb_rooms)
+		while (++j < (int)data->nb_rooms)
 		{
 			if (mx[j][i] == 1)
 			{
-				duplicate_path_to_dest(mx, j, data->paths, valid_saved, data->nb_rooms);
+				duplicate_path_to_dest(mx, j, data->paths, valid_saved, (int)data->nb_rooms);
 				valid_saved++;
 			}
 		}
@@ -233,7 +233,7 @@ void	path_finder(t_data *data)
 	int 	**mx;
 	int 	**links;
 
-	if (!(mx = alloc_matrix(data->nb_rooms, data->nb_rooms, -1)))
+	if (!(mx = alloc_matrix((int)data->nb_rooms, (int)data->nb_rooms, -1)))
 		return ;
 	links = data->matrix;
 	print_matrix(data, links);
@@ -242,7 +242,7 @@ void	path_finder(t_data *data)
 	if (!load_valid_paths(data, mx))
 		ft_printf("error loading valid paths into data->paths");
 	ft_printf("found %d valid paths:\n", data->n_valid);
-	print_tab(data->paths, data->nb_rooms, data->n_valid);
+	print_tab(data->paths, (int)data->nb_rooms, data->n_valid);
 	exit(0);
 		//ft_free_matrix(&mx);
 }

@@ -49,7 +49,7 @@ typedef struct	s_data
 	int		*line_type;
 	t_room	*rooms;
 
-	int 	nb_rooms;
+	size_t	nb_rooms;
 	int		nb_ants;
 	int		**matrix;
 	int 	**paths;
