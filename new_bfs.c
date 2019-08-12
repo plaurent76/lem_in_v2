@@ -59,7 +59,7 @@ int		room_in_path(int **mx, int path_n, int id)
 	int 	i;
 
 	i = 0;
-	while (mx[path_n][i] != -1 && mx[path_n][i] != 1)
+	while (mx[path_n][i] != -1)
 		if (mx[path_n][i++] == id)
 			return (1);
 	return (0);
@@ -110,7 +110,8 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 			}
 			add_to_path(mx, size_y, path_n_duplicate, x);
 			ft_printf("explore path %d from room %d\n", path_n, x);
-			explore_paths(data, links, mx, size_y, path_n_duplicate, x);
+			if (x != 1)
+				explore_paths(data, links, mx, size_y, path_n_duplicate, x);
 		}
 	}
 	if (n_link == 0)
@@ -133,5 +134,6 @@ void	path_finder(t_data *data)
 	explore_paths(data, links, mx, n, 0, 0);
 	ft_putstr("teste8");
 	print_matrix(data, mx);
-		ft_free_matrix(&mx);
+	exit(0);
+		//ft_free_matrix(&mx);
 }
