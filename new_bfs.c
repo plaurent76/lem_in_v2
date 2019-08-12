@@ -235,7 +235,7 @@ void	path_finder(t_data *data)
 		return ;
 	links = data->matrix;
 	print_matrix(data, links);
-	// n_valid = 0;
+	data->n_valid = -1;
 	explore_paths(data, links, mx, (int)data->nb_rooms, 0, 0);
 	if (!load_valid_paths(data, mx))
 		ft_printf("error loading valid paths into data->paths");
