@@ -240,7 +240,7 @@ void	path_finder(t_data *data)
 	if (!load_valid_paths(data, mx))
 		ft_printf("error loading valid paths into data->paths");
 	ft_printf("found %d valid paths:\n", data->n_valid);
-	print_tab(data, data->paths);
+	print_tab(data->paths, data->nb_rooms, data->n_valid);
 	exit(0);
 		//ft_free_matrix(&mx);
 }
