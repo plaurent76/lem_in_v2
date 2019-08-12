@@ -215,6 +215,7 @@ int 	load_valid_paths(t_data *data, int **mx)
 
 	while (++i < data->nb_rooms && valid_saved < data->n_valid)
 	{
+		j = -1;
 		while (++j < data->nb_rooms)
 		{
 			if (mx[j][i] == 1)
