@@ -78,12 +78,7 @@ void	del_path(int **mx, int y)
 
 void	add_to_path(int **mx, int size_y, int y, int id)
 {
-	if (!room_in_path(mx, y, id))
-	{
-		mx[y][ffx(mx, y, size_y)] = id;
-		return ;
-	}
-	del_path(mx, y);
+	mx[y][ffx(mx, y, size_y)] = id;
 }
 
 
@@ -103,7 +98,7 @@ void 	explore_paths(int **links, int **mx, int size_y, int path_n, int id)
 	path_n_duplicate = path_n;
 	while (++x < size_y)
 	{
-		if (links[id][x]) // link exists with start
+		if (links[id][x] && !room_in_path(mx, x, id)) // link exists with start
 		{
 			n_link++;
 			if (n_link > 1)
@@ -111,7 +106,7 @@ void 	explore_paths(int **links, int **mx, int size_y, int path_n, int id)
 				path_n_duplicate = duplicate_path(mx, size_y, size_y, path_n);
 			}
 			add_to_path(mx, size_y, path_n_duplicate, x);
-			//explore_paths(links, mx, size_y, path_n_duplicate, id);
+			explore_paths(links, mx, size_y, path_n_duplicate, x);
 		}
 	}
 	if (n_link == 0)

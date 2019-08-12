@@ -239,7 +239,7 @@ int     blocking(t_data *data, int *first_path, t_path *all_paths, int flow)
         //    return (all_path);
     }
     else
-        printf("CHECK BLOCKING N'A TROUVE AUCUNE SOLUTION !!!\n");//TEST
+        ft_printf("CHECK BLOCKING N'A TROUVE AUCUNE SOLUTION !!!\n");//TEST
     return (0);
 }
 
