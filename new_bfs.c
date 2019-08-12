@@ -57,7 +57,7 @@ void 	print_path(int *path, int n)
 {
 	int i = -1;
 
-	while (i++ < n)
+	while (++i < n)
 		(i == (n-1)) ? ft_printf("%d\n", path[i]) : ft_printf("%d | ", path[i]);
 }
 
@@ -66,14 +66,14 @@ int 	paths_match(int *path1, int *path2, int length)
 	int 	i;
 
 	ft_printf("comparing previous path:\n");
-	print_path(path_2, length);
+	print_path(path2, length);
 	ft_printf("with new path:\n");
-	print_path(path_1, length);
+	print_path(path1, length);
 	i = -1;
 	while (++i < length)
 		if (path1[i] != path2[i])
-			return (1);
-	return (0);
+			return (0);
+	return (1);
 }
 
 // checks if room is already in path and if path is not duplicate from last one
@@ -86,13 +86,15 @@ int		room_used(int **mx, int path_n, int id)
 		if (mx[path_n][length++] == id)
 			return (1);
 	if (path_n > 0) {
+		ft_printf("path_n: %d length: %d\n", path_n, length);
 		if (paths_match(mx[path_n], mx[path_n - 1], length - 1)
 			&& (id == mx[path_n - 1][length])) {
 			return (1);
 		}
-	}
-	ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length - 1) ? "yes\n" : "no\n");
+		ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length - 1) ? "yes\n" : "no\n");
 	ft_printf("last member match:%s\n", (id == mx[path_n - 1][length]) ? "yes\n" : "no\n");
+	}
+	
 	return (0);
 }
 
