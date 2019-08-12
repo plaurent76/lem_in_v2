@@ -159,15 +159,15 @@ int 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n, 
 			if (x != 1)
 				return explore_paths(data, links, mx, size_y, path_n_duplicate, x);
 			else
-				return data->n_valid++;
+				return (data->n_valid++);
 		}
 	}
 	if (n_link == 0)
 	{
 		// del_path(mx, path_n);
 		ft_printf("path %d deleted cause no link\n", path_n);
-		return 0;
 	}
+	return (0);
 }
 
 // first valid from
@@ -201,7 +201,7 @@ int 	load_valid_paths(t_data *data, int **mx)
 	int 	valid;
 	int 	previous_valid;
 
-	if (!(data->paths = alloc_matrix_int(n_rooms, data->n_valid, -1)))
+	if (!(data->paths = alloc_matrix(data->nb_rooms, data->n_valid, -1)))
 		return 0;
 	i = -1;
 	previous_valid = 0;

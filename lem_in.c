@@ -19,11 +19,9 @@ int			main(int ac, char **av)
 	t_data	data;
 	//t_path	*path;
 
-	ft_putstr("teste");
 	if (ac != 2 || (fd = open(av[1], O_RDONLY)) == -1)
 		return (0);
 	init(&data);
-	ft_putstr("teste2");
 	if (!(input = get_input(fd)))
 	{
 		close(fd);
@@ -32,7 +30,6 @@ int			main(int ac, char **av)
 	close(fd);
 	if (!get_data(&data, input))
 		return (0);
-	ft_putstr("teste3");
 	ft_printf("INPUT : \n");// TEST
 	print_input(data.input);
 	
