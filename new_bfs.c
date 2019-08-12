@@ -205,22 +205,42 @@ int		duplicate_path_to_dest(int **mx_src, int y_src, int **mx_dest, int y_dest, 
 int 	load_valid_paths(t_data *data, int **mx)
 {
 	int 	i;
-	int 	valid;
-	int 	previous_valid;
+	int 	j;
+	int 	valid_saved;
 
 	if (!(data->paths = alloc_matrix(data->nb_rooms, data->n_valid, -1)))
 		return 0;
 	i = -1;
-	previous_valid = 0;
-	while (++i < data->n_valid)
+	valid_saved = 0;
+
+	while (++i < data->nb_rooms && valid_saved < data->n_valid)
 	{
-		valid = fvf(mx, previous_valid, data->nb_rooms, data->nb_rooms);
-		if (valid == -1)
-			return 0;
-		duplicate_path_to_dest(mx, valid, data->paths, i, data->nb_rooms);
-		previous_valid = valid;
+		while (++j < data->nb_rooms)
+		{
+			if (mx[j][i] == 1)
+			{
+				duplicate_path_to_dest(mx, j, data->paths, valid_saved, data->nb_rooms);
+				valid_saved++;
+			}
+		}
 	}
 	return 1;
+}
+
+
+int 	sort_valid_paths(t_data *data)
+{
+	int 	*tmp;
+	int 	max;
+	int 	i;
+
+	if (!(tmp = (int*)malloc(sizeof(int)*data->nb_rooms)))
+		return (0);
+	i = 0;
+	max = data->nb_rooms;
+	while (++i < data->n_valid) {
+
+	}
 }
 
 void	path_finder(t_data *data)
