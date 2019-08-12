@@ -150,7 +150,7 @@ void 	explore_paths(t_data *data, int **links, int **mx, int path_n, int id)
 	path_n_length = 0;
 	while (mx[path_n][path_n_length] != -1)
 		path_n_length++;
-	while (++x < data->nb_rooms)
+	while (++x < (int)data->nb_rooms)
 	{
 		// checks if room is already in path and if path is not duplicate from last one
 		if (links[id][x] && !room_used(mx, path_n, x)) // link exists with start
@@ -160,8 +160,8 @@ void 	explore_paths(t_data *data, int **links, int **mx, int path_n, int id)
 			//ft_printf("%d-%d\n", id, x);
 			ft_printf("n_link: %d\n", ++n_link);
 			if (n_link > 1)
-				path_n_duplicate = duplicate_path_until(mx, path_n_length, size_y, path_n);
-			add_to_path(mx, size_y, path_n_duplicate, x);
+				path_n_duplicate = duplicate_path_until(mx, path_n_length, data->nb_paths, path_n);
+			add_to_path(mx, data->nb_rooms, path_n_duplicate, x);
 			print_matrix(data, mx);
 			ft_printf("explore path %d from room %d\n", path_n, x);
 			if (x != 1)
@@ -232,15 +232,19 @@ void	path_finder(t_data *data)
 {
 	int 	**mx;
 	int 	**links;
-
+	
+	ft_printf("avant calcule nb_path\n");
+	data->nb_paths = (int)(256 + data->nb_rooms / 3);
+	ft_printf("nb_rooms: %d\n nb_paths: %d\n", data->nb_rooms, data->nb_paths);
 	if (!(mx = alloc_matrix((int)data->nb_rooms, (int)data->nb_paths, -1)))
 		return ;
+	ft_printf("apres alloc\n");
 	links = data->matrix;
-	print_matrix(data, links);
+	print_tab(links, data->nb_rooms, data->nb_rooms);
+	ft_printf("apres print\n");
 	data->nb_valid = -1;
-	// approximation of max number of paths
-	data->nb_paths = (int)(256 + data->nb_rooms / 3);
 	explore_paths(data, links, mx, 0, 0);
+	ft_printf("apres explore\n");
 	if (!load_valid_paths(data, mx))
 		ft_printf("error loading valid paths into data->paths");
 	ft_printf("found %d valid paths:\n", data->nb_valid);
