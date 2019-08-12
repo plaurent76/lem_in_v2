@@ -77,12 +77,12 @@ int		room_used(int **mx, int path_n, int id)
 	{
 		if (mx[path_n][length] == id)
 		{
-			ft_printf("room %d found in path %d: ", id, path_n);
+			ft_printf("room %d found in path %d at length %d: ", id, path_n, length);
 			print_path(mx[path_n], length + 1);
 			return (1);
 		}
 	}
-	ft_printf("room %d NOT found in path %d: ", id, path_n);
+	ft_printf("room %d NOT found in path %d of length %d: ", id, path_n, length);
 	print_path(mx[path_n], length);
 	if (path_n > 0) {
 		//ft_printf("path_n: %d length: %d\n", path_n, length);
