@@ -58,9 +58,9 @@ int		room_in_path(int **mx, int path_n, int id)
 {
 	int 	i;
 
-	i = -1;
-	while (mx[path_n][++i] != -1 && mx[path_n][++i] != 1)
-		if (mx[path_n][i] == id)
+	i = 0;
+	while (mx[path_n][i] != -1 && mx[path_n][i] != 1)
+		if (mx[path_n][i++] == id)
 			return (1);
 	return (0);
 }
