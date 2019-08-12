@@ -43,14 +43,17 @@ typedef struct	s_path
 typedef struct	s_data
 {
 	int		*score;
-	int		nb_ants;
 	int		*block;
 	int		flow_max;
 	char	**input;
 	int		*line_type;
-	int		**matrix;
 	t_room	*rooms;
+
 	size_t	nb_rooms;
+	int		nb_ants;
+	int		**matrix;
+	int 	**paths;
+	int 	n_valid;
 }				t_data;
 
 void	path_finder(t_data *data);
