@@ -53,7 +53,15 @@ void 	print_path(int *path, int n)
 	int i = -1;
 
 	while (++i < n)
-		(i == (n-1)) ? ft_printf("%d\n", path[i]) : ft_printf("%d | ", path[i]);
+		(i == (n-1)) ? ft_printf("%d\n", path[i]) : ft_printf(" %d\t\t| ", path[i]);
+}
+
+void 	print_tab(int **tab, int x, int y)
+{
+	int i = -1;
+
+	while (++i < y)
+		print_path(tab[i], x);
 }
 
 int 	paths_match(int *path1, int *path2, int length)
@@ -232,7 +240,7 @@ void	path_finder(t_data *data)
 	if (!load_valid_paths(data, mx))
 		ft_printf("error loading valid paths into data->paths");
 	ft_printf("found %d valid paths:\n", data->n_valid);
-	print_matrix(data, data->paths);
+	print_tab(data, data->paths);
 	exit(0);
 		//ft_free_matrix(&mx);
 }
