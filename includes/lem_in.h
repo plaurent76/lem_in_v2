@@ -50,10 +50,11 @@ typedef struct	s_data
 	t_room	*rooms;
 
 	size_t	nb_rooms;
+	size_t	nb_paths;
+	int 	nb_valid;
 	int		nb_ants;
 	int		**matrix;
 	int 	**paths;
-	int 	n_valid;
 }				t_data;
 
 void	path_finder(t_data *data);

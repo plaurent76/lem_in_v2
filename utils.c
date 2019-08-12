@@ -92,6 +92,7 @@ void	init(t_data *data)
 	data->flow_max = 0;
 	data->input = NULL;
 	data->nb_rooms = 0;
+	data->nb_paths = 0;
 	data->matrix = NULL;
 	data->block = NULL;
 }
