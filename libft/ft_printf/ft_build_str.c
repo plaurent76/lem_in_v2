@@ -20,8 +20,8 @@ static void		ft_set_precision_o(char *initial, t_asset *asset)
 				&& asset->width > ft_strlen(initial))
 				&& !((asset->precision == -1 || asset->precision == 0)
 				&& ft_atoi(initial) == 0))
-			asset->precision = (asset->precision < (int)(ft_strlen(initial))
-				? ft_strlen(initial) + 1 : asset->precision);
+			asset->precision = (asset->precision < (int)ft_strlen(initial)
+				? (int)ft_strlen(initial) + 1 : (int)asset->precision);
 		else if (asset->precision == 0 && ft_strchr(asset->flags, '#')
 				&& ft_atoi(initial) == 0)
 			asset->precision = 1;
@@ -54,10 +54,8 @@ char			*ft_set_precision(char *initial, t_asset *asset, int signmode)
 
 static char		*st_set_x_case(char *final)
 {
-	int		i;
 	char	*str;
 
-	i = 0;
 	if ((str = ft_strchr(final, 'x')))
 	{
 		str[0] = '0';

@@ -12,7 +12,7 @@
 
 NAME = libft.a
 
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Wextra -Werror
 
 SRC = ft_putchar_fd.c ft_putnbr.c ft_putendl.c ft_putstr.c ft_putchar.c	\
 	  ft_itoa.c ft_strsplit.c ft_strtrim.c ft_strjoin.c ft_strsub.c		\
@@ -48,7 +48,7 @@ OBJ2 = ft_build_str.o ft_conv_oux.o ft_dispatch.o ft_inf_f.o ft_conv_c.o\
 	  ft_preci_0_f.o ft_print_asset.o ft_printf.o ft_set_width.o		\
 	  ft_setprint.o ft_special.o ft_width.o
 
-HEADER = libft.h ft_printf/ft_printf.h
+HEADER = ./includes/
 
 OBJ = $(SRC:.c=.o)
 

@@ -17,10 +17,8 @@ char	*ft_findflags(char *tab)
 	char	*tmp;
 	char	*str;
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	j = 0;
 	str = ft_strnew(0);
 	tmp = ft_strnew(1);
 	while (tab[++i])

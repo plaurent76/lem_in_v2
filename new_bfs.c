@@ -233,20 +233,15 @@ void	path_finder(t_data *data)
 	int 	**mx;
 	int 	**links;
 	
-	ft_printf("avant calcule nb_path\n");
 	data->nb_paths = (int)(256 + data->nb_rooms / 3);
 	ft_printf("nb_rooms: %d\n nb_paths: %d\n", data->nb_rooms, data->nb_paths);
 	if (!(mx = alloc_matrix((int)data->nb_rooms, (int)data->nb_paths, -1)))
 		return ;
-	ft_printf("apres alloc\n");
 	// print_tab(mx, data->nb_rooms, data->nb_paths);
-	ft_printf("apres print\n");
 	links = data->matrix;
 	// print_tab(links, data->nb_rooms, data->nb_rooms);
-	ft_printf("apres print\n");
 	data->nb_valid = 0;
 	explore_paths(data, links, mx, 0, 0);
-	ft_printf("apres explore\n");
 	if (!load_valid_paths(data, mx))
 		ft_printf("error loading valid paths into data->paths");
 	ft_printf("found %d valid paths:\n", data->nb_valid);
