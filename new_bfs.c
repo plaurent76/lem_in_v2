@@ -53,7 +53,7 @@ void 	print_path(int *path, int n)
 	int i = -1;
 
 	while (++i < n)
-		(i == (n-1)) ? ft_printf("%d\n", path[i]) : ft_printf(" %d\t\t| ", path[i]);
+		(i == (n-1)) ? ft_printf("%d\n", path[i]) : ft_printf(" %d\t| ", path[i]);
 }
 
 void 	print_tab(int **tab, int x, int y)
