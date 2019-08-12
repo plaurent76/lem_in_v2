@@ -85,13 +85,13 @@ int		room_used(int **mx, int path_n, int id)
 	{
 		if (mx[path_n][length] == id)
 		{
-			ft_printf("room %d found in path %d at length %d: ", id, path_n, length);
-			print_path(mx[path_n], length + 1);
+			// ft_printf("room %d found in path %d at length %d: ", id, path_n, length);
+			// print_path(mx[path_n], length + 1);
 			return (1);
 		}
 	}
-	ft_printf("room %d NOT found in path %d of length %d: ", id, path_n, length);
-	print_path(mx[path_n], length);
+	// ft_printf("room %d NOT found in path %d of length %d: ", id, path_n, length);
+	// print_path(mx[path_n], length);
 	if (path_n > 0) {
 		//ft_printf("path_n: %d length: %d\n", path_n, length);
 		if (paths_match(mx[path_n], mx[path_n - 1], length)
@@ -99,15 +99,15 @@ int		room_used(int **mx, int path_n, int id)
 			return (1);
 		}
 		//bullshit
-		ft_printf("comparing previous path:\n");
-		print_path(mx[path_n-1], length);
-		ft_printf("with new path:\n");
-		print_path(mx[path_n], length);
-		ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length) ? "yes\n" : "no\n");
+		// ft_printf("comparing previous path:\n");
+		// print_path(mx[path_n-1], length);
+		// ft_printf("with new path:\n");
+		// print_path(mx[path_n], length);
+		// ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length) ? "yes\n" : "no\n");
 
-		ft_printf("comparing last room of previous with new room to add:\n");
-		ft_printf("%d vs %d match:%s\n", id, mx[path_n - 1][length], (id == mx[path_n - 1][length]) ? "yes\n" : "no\n");
-		//end of bullshit
+		// ft_printf("comparing last room of previous with new room to add:\n");
+		// ft_printf("%d vs %d match:%s\n", id, mx[path_n - 1][length], (id == mx[path_n - 1][length]) ? "yes\n" : "no\n");
+		// //end of bullshit
 
 	}
 	
@@ -155,15 +155,15 @@ void 	explore_paths(t_data *data, int **links, int **mx, int path_n, int id)
 		// checks if room is already in path and if path is not duplicate from last one
 		if (links[id][x] && !room_used(mx, path_n, x)) // link exists with start
 		{
-			if (id == 0)
-				ft_printf("%d\n", x);
+			//if (id == 0)
+				//ft_printf("%d\n", x);
 			//ft_printf("%d-%d\n", id, x);
-			ft_printf("n_link: %d\n", ++n_link);
+			++n_link;
 			if (n_link > 1)
 				path_n_duplicate = duplicate_path_until(mx, path_n_length, data->nb_paths, path_n);
 			add_to_path(mx, data->nb_rooms, path_n_duplicate, x);
 			// print_tab(mx, data->nb_rooms, data->nb_paths);
-			ft_printf("explore path %d from room %d\n", path_n, x);
+			// ft_printf("explore path %d from room %d\n", path_n, x);
 			if (x != 1)
 				explore_paths(data, links, mx, path_n_duplicate, x);
 			else
@@ -173,7 +173,7 @@ void 	explore_paths(t_data *data, int **links, int **mx, int path_n, int id)
 	if (n_link == 0)
 	{
 		// del_path(mx, path_n);
-		ft_printf("path %d deleted cause no link\n", path_n);
+		//ft_printf("path %d deleted cause no link\n", path_n);
 	}
 }
 
@@ -238,15 +238,15 @@ void	path_finder(t_data *data)
 	ft_printf("nb_rooms: %d\n nb_paths: %d\n", data->nb_rooms, data->nb_paths);
 	if (!(mx = alloc_matrix((int)data->nb_rooms, (int)data->nb_paths, -1)))
 		return ;
-	ft_printf("apres alloc\n");
-	// print_tab(mx, data->nb_rooms, data->nb_paths);
-	ft_printf("apres print\n");
+	// ft_printf("apres alloc\n");
+	//print_tab(mx, data->nb_rooms, data->nb_paths);
+	//ft_printf("apres print\n");
 	links = data->matrix;
-	// print_tab(links, data->nb_rooms, data->nb_rooms);
-	ft_printf("apres print\n");
+	//print_tab(links, data->nb_rooms, data->nb_rooms);
+	// ft_printf("apres print\n");
 	data->nb_valid = 0;
 	explore_paths(data, links, mx, 0, 0);
-	ft_printf("apres explore\n");
+	 ft_printf("apres explore\n");
 	if (!load_valid_paths(data, mx))
 		ft_printf("error loading valid paths into data->paths");
 	ft_printf("found %d valid paths:\n", data->nb_valid);
