@@ -54,14 +54,33 @@ int		duplicate_path(int **mx, int size_x, int size_y, int y_src)
 }
 
 
-int		room_in_path(int **mx, int path_n, int id)
+int 	paths_match(int *path1, int *path2, int length)
 {
 	int 	i;
 
-	i = 0;
-	while (mx[path_n][i] != -1)
-		if (mx[path_n][i++] == id)
+	i = -1;
+	while (++i < length)
+		if (path1[i] != path2[i])
 			return (1);
+	return (0);
+}
+
+// checks if room is already in path and if path is not duplicate from last one
+
+int		room_used(int **mx, int path_n, int id)
+{
+	int 	length;
+
+	length = 0;
+	while (mx[path_n][length] != -1)
+		if (mx[path_n][length++] == id)
+			return (1);
+	if (path_n > 0) {
+		if (paths_match(mx[path_n], mx[path_n - 1], length - 1)
+			&& (id == mx[path_n - 1][length])) {
+			return (1);
+		}
+	}
 	return (0);
 }
 
@@ -99,7 +118,9 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 	while (++x < size_y)
 	{
 
-		if (links[id][x] && !room_in_path(mx, path_n, x)) // link exists with start
+// checks if room is already in path and if path is not duplicate from last one
+
+		if (links[id][x] && !room_used(mx, path_n, x)) // link exists with start
 		{
 			ft_printf("%d-%d\n", id, x);
 			print_matrix(data, mx);
