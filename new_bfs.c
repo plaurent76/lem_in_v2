@@ -65,10 +65,6 @@ int 	paths_match(int *path1, int *path2, int length)
 {
 	int 	i;
 
-	ft_printf("comparing previous path:\n");
-	print_path(path2, length);
-	ft_printf("with new path:\n");
-	print_path(path1, length);
 	i = -1;
 	while (++i < length)
 		if (path1[i] != path2[i])
@@ -91,8 +87,17 @@ int		room_used(int **mx, int path_n, int id)
 			&& (id == mx[path_n - 1][length])) {
 			return (1);
 		}
+		// bullshit
+		ft_printf("comparing previous path:\n");
+		print_path(path2, length);
+		ft_printf("with new path:\n");
+		print_path(path1, length);
 		ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length - 1) ? "yes\n" : "no\n");
-	ft_printf("last member match:%s\n", (id == mx[path_n - 1][length]) ? "yes\n" : "no\n");
+
+		ft_printf("comparing last room of previous with new room to add:\n");
+		ft_printf("%d vs %d match:%s\n", id, mx[path_n - 1][length], (id == mx[path_n - 1][length]) ? "yes\n" : "no\n");
+		// end of bullshit
+
 	}
 	
 	return (0);
