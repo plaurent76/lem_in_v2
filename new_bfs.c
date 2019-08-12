@@ -151,9 +151,7 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 			//ft_printf("%d-%d\n", id, x);
 			ft_printf("n_link: %d\n", ++n_link);
 			if (n_link > 1)
-			{
 				path_n_duplicate = duplicate_path_until(mx, path_n_length, size_y, path_n);
-			}
 			add_to_path(mx, size_y, path_n_duplicate, x);
 			print_matrix(data, mx);
 			ft_printf("explore path %d from room %d\n", path_n, x);
@@ -163,7 +161,7 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 	}
 	if (n_link == 0)
 	{
-		del_path(mx, path_n);
+		// del_path(mx, path_n);
 		ft_printf("path %d deleted cause no link\n", path_n);
 	}
 }
