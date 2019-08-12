@@ -89,9 +89,9 @@ int		room_used(int **mx, int path_n, int id)
 		}
 		// bullshit
 		ft_printf("comparing previous path:\n");
-		print_path(path2, length);
+		print_path(mx[path_n-1], length);
 		ft_printf("with new path:\n");
-		print_path(path1, length);
+		print_path(mx[path_n], length);
 		ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length - 1) ? "yes\n" : "no\n");
 
 		ft_printf("comparing last room of previous with new room to add:\n");
