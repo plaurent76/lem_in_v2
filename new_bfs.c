@@ -162,7 +162,7 @@ void 	explore_paths(t_data *data, int **links, int **mx, int path_n, int id)
 			if (n_link > 1)
 				path_n_duplicate = duplicate_path_until(mx, path_n_length, data->nb_paths, path_n);
 			add_to_path(mx, data->nb_rooms, path_n_duplicate, x);
-			print_matrix(data, mx);
+			print_tab(mx, data->nb_rooms, data->nb_paths);
 			ft_printf("explore path %d from room %d\n", path_n, x);
 			if (x != 1)
 				explore_paths(data, links, mx, path_n_duplicate, x);
