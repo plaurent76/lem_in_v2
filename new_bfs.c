@@ -247,5 +247,5 @@ void	path_finder(t_data *data)
 	ft_printf("found %d valid paths:\n", data->nb_valid);
 	print_tab(data->paths, (int)data->nb_rooms, data->nb_valid);
 	exit(0);
-		//ft_free_matrix(&mx);
+	ft_free_matrix(&mx);
 }
