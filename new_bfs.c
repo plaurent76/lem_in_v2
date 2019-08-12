@@ -78,7 +78,7 @@ int		room_used(int **mx, int path_n, int id)
 			return (1);
 	if (path_n > 0) {
 		//ft_printf("path_n: %d length: %d\n", path_n, length);
-		if (paths_match(mx[path_n], mx[path_n - 1], length - 1)
+		if (paths_match(mx[path_n], mx[path_n - 1], length)
 			&& (id == mx[path_n - 1][length])) {
 			return (1);
 		}
@@ -87,7 +87,7 @@ int		room_used(int **mx, int path_n, int id)
 		print_path(mx[path_n-1], length);
 		ft_printf("with new path:\n");
 		print_path(mx[path_n], length);
-		ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length - 1) ? "yes\n" : "no\n");
+		ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length) ? "yes\n" : "no\n");
 
 		ft_printf("comparing last room of previous with new room to add:\n");
 		ft_printf("%d vs %d match:%s\n", id, mx[path_n - 1][length], (id == mx[path_n - 1][length]) ? "yes\n" : "no\n");
