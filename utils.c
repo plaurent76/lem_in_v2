@@ -88,7 +88,7 @@ int     **ft_matrixdup(int **src, size_t size) // A rajouter dans libft si bien 
 void	init(t_data *data)
 {
 	data->paths = NULL;
-	data->n_valid = 0;
+	data->n_valid = -1;
 	data->flow_max = 0;
 	data->input = NULL;
 	data->nb_rooms = 0;
