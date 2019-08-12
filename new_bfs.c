@@ -39,17 +39,12 @@ int	 ffx(int **mx, int y, int size_x)
 }
 
 // duplicates given path row and returns index of duplicated row
-int		duplicate_path(int **mx, int size_x, int size_y, int y_src)
+int		duplicate_path_until(int **mx, int until, int size_y, int y_src)
 {
 	int 	y;
-	int		i;
 
 	y = ffy(mx, size_y);
-	ft_memcpy(mx[y], mx[y_src], (size_x) * sizeof(int));
-	i = 0;
-	while (mx[y][i] != -1)
-		i++;
-	mx[y][i - 1] = -1;
+	ft_memcpy(mx[y], mx[y_src], (until) * sizeof(int));
 	return (y);
 }
 
@@ -124,6 +119,7 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 {
 	int 	n_link;
 	int 	path_n_duplicate;
+	int		path_n_length;
 	int		x;
 
 	x = -1;
@@ -134,11 +130,12 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 		add_to_path(mx, size_y, path_n, id);
 	}
 	path_n_duplicate = path_n;
+	path_n_length = 0;
+	while (mx[path_n][path_n_length] != -1)
+		path_n_length++;
 	while (++x < size_y)
 	{
-
-// checks if room is already in path and if path is not duplicate from last one
-
+		// checks if room is already in path and if path is not duplicate from last one
 		if (links[id][x] && !room_used(mx, path_n, x)) // link exists with start
 		{
 			if (id == 0)
@@ -148,7 +145,7 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 			ft_putnbr(n_link++);
 			if (n_link > 1)
 			{
-				path_n_duplicate = duplicate_path(mx, size_y, size_y, path_n);
+				path_n_duplicate = duplicate_path_until(mx, path_n_length, size_y, path_n);
 			}
 			add_to_path(mx, size_y, path_n_duplicate, x);
 			//ft_printf("explore path %d from room %d\n", path_n, x);
