@@ -239,6 +239,8 @@ void	path_finder(t_data *data)
 	if (!(mx = alloc_matrix((int)data->nb_rooms, (int)data->nb_paths, -1)))
 		return ;
 	ft_printf("apres alloc\n");
+	print_tab(mx, data->nb_rooms, data->nb_paths);
+	ft_printf("apres print\n");
 	links = data->matrix;
 	print_tab(links, data->nb_rooms, data->nb_rooms);
 	ft_printf("apres print\n");
