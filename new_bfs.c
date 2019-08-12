@@ -228,22 +228,6 @@ int 	load_valid_paths(t_data *data, int **mx)
 	return 1;
 }
 
-
-int 	sort_valid_paths(t_data *data)
-{
-	int 	*tmp;
-	int 	max;
-	int 	i;
-
-	if (!(tmp = (int*)malloc(sizeof(int)*data->nb_rooms)))
-		return (0);
-	i = 0;
-	max = data->nb_rooms;
-	while (++i < data->n_valid) {
-
-	}
-}
-
 void	path_finder(t_data *data)
 {
 	int 	**mx;
