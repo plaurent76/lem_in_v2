@@ -82,20 +82,20 @@ int		room_used(int **mx, int path_n, int id)
 		if (mx[path_n][length++] == id)
 			return (1);
 	if (path_n > 0) {
-		ft_printf("path_n: %d length: %d\n", path_n, length);
+		//ft_printf("path_n: %d length: %d\n", path_n, length);
 		if (paths_match(mx[path_n], mx[path_n - 1], length - 1)
 			&& (id == mx[path_n - 1][length])) {
 			return (1);
 		}
 		// bullshit
-		ft_printf("comparing previous path:\n");
-		print_path(mx[path_n-1], length);
-		ft_printf("with new path:\n");
-		print_path(mx[path_n], length);
-		ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length - 1) ? "yes\n" : "no\n");
+		// ft_printf("comparing previous path:\n");
+		// print_path(mx[path_n-1], length);
+		// ft_printf("with new path:\n");
+		// print_path(mx[path_n], length);
+		// ft_printf("path_match:%s\n", paths_match(mx[path_n], mx[path_n - 1], length - 1) ? "yes\n" : "no\n");
 
-		ft_printf("comparing last room of previous with new room to add:\n");
-		ft_printf("%d vs %d match:%s\n", id, mx[path_n - 1][length], (id == mx[path_n - 1][length]) ? "yes\n" : "no\n");
+		// ft_printf("comparing last room of previous with new room to add:\n");
+		// ft_printf("%d vs %d match:%s\n", id, mx[path_n - 1][length], (id == mx[path_n - 1][length]) ? "yes\n" : "no\n");
 		// end of bullshit
 
 	}
@@ -141,15 +141,17 @@ void 	explore_paths(t_data *data, int **links, int **mx, int size_y, int path_n,
 
 		if (links[id][x] && !room_used(mx, path_n, x)) // link exists with start
 		{
-			ft_printf("%d-%d\n", id, x);
-			print_matrix(data, mx);
-			n_link++;
+			if (id == 0)
+				ft_printf("%d\n", x);
+			//ft_printf("%d-%d\n", id, x);
+			//print_matrix(data, mx);
+			ft_putnbr(n_link++);
 			if (n_link > 1)
 			{
 				path_n_duplicate = duplicate_path(mx, size_y, size_y, path_n);
 			}
 			add_to_path(mx, size_y, path_n_duplicate, x);
-			ft_printf("explore path %d from room %d\n", path_n, x);
+			//ft_printf("explore path %d from room %d\n", path_n, x);
 			if (x != 1)
 				explore_paths(data, links, mx, size_y, path_n_duplicate, x);
 		}
@@ -172,7 +174,7 @@ void	path_finder(t_data *data)
 	n = (int)data->nb_rooms;
 	print_matrix(data, links);
 	explore_paths(data, links, mx, n, 0, 0);
-	ft_putstr("teste8");
+	//ft_putstr("teste8");
 	print_matrix(data, mx);
 	exit(0);
 		//ft_free_matrix(&mx);
