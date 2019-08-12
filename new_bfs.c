@@ -204,14 +204,17 @@ int 	load_valid_paths(t_data *data, int **mx)
 		return 0;
 	i = -1;
 	previous_valid = 0;
+	ft_printf("n_valid:%d\n", data->n_valid);
 	while (++i < data->n_valid)
 	{
+		ft_printf("value of i:%d\n", i);
 		valid = fvf(mx, previous_valid, data->nb_rooms, data->nb_rooms);
 		if (valid == -1)
 			return 0;
 		duplicate_path_to_dest(mx, valid, data->paths, i, data->nb_rooms);
 		previous_valid = valid;
 	}
+	ft_printf("while finish");
 	return 1;
 }
 
