@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = clang
-CFLAGS = -Wall -Wextra # -Werror
+CFLAGS = -g -Wall -Wextra # -Werror
 NAME = lem_in
 
 RED = "\033[0;31m"
